@@ -38,7 +38,8 @@ class BukuController extends Controller
             'judul'     => 'required',
             'pengarang' => 'required',
             'penerbit'  => 'required',
-            'kategori' => 'required',
+            'kategori'  => 'required',
+            'stock'     => 'required',
         ]);
 
         Buku::create($validated);
@@ -75,7 +76,7 @@ class BukuController extends Controller
      */
     public function destroy(Buku $buku)
     {
-        Buku::destroy($buku->id);
+        $buku->id;
         return redirect()->back();
     }
 }

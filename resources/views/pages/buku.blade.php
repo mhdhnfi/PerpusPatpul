@@ -44,24 +44,34 @@
                                             <div class="col">
                                                 <label>Judul</label>
                                                 <div class="input-group mb-3">
-                                                    <input type="text" class="form-control" placeholder="Judul buku"
+                                                    <input type="text" class="form-control" placeholder="Example: NapiXhutao"
                                                         autocomplete="off" name="judul" value="">
                                                 </div>
                                             </div>
                                             <div class="col">
                                                 <label>Pengarang</label>
                                                 <div class="input-group mb-3">
-                                                    <input type="text" class="form-control" placeholder="Nama pengarang"
+                                                    <input type="text" class="form-control" placeholder="Example: Hu Tao"
                                                         autocomplete="off" name="pengarang" value="">
+                                                </div>
+                                            </div>
+                                        </div>
+             
+                                        <div class="row">
+                                            <div class="col">
+                                                <label>Penerbit</label>
+                                                <div class="input-group mb-3">
+                                                    <input type="text" class="form-control" placeholder="Example: Gramedia"
+                                                        autocomplete="off" name="penerbit" value="">
                                                 </div>
                                             </div>
                                         </div>
                                         <div class="row">
                                             <div class="col">
-                                                <label>Penerbit</label>
+                                                <label>Stock</label>
                                                 <div class="input-group mb-3">
-                                                    <input type="text" class="form-control" placeholder="Judul buku"
-                                                        autocomplete="off" name="penerbit" value="">
+                                                        <input type="number"min="1" max="100000"class="form-control"
+                                                        autocomplete="off" name="stock" value="1">
                                                 </div>
                                             </div>
                                         </div>
@@ -98,6 +108,7 @@
                                         <th class="text-center">Pengarang</th>
                                         <th class="text-center">Penerbit</th>
                                         <th class="text-center">Kategori</th>
+                                        <th class="text-center">Stock</th>
                                         <th class="text-center">Tanggal Input</th>
                                         <th class="text-center">Action</th>
                                     </tr>
@@ -124,7 +135,7 @@
                                                                     <label>Judul</label>
                                                                     <div class="input-group mb-3">
                                                                         <input type="text" class="form-control"
-                                                                            placeholder="Example: Agas NT"
+                                                                            placeholder="Example: NapiXhutao"
                                                                             autocomplete="off" name="judul"
                                                                             value="{{ $buku->judul }}">
                                                                     </div>
@@ -143,11 +154,21 @@
                                                                     <label>Penerbit</label>
                                                                     <div class="input-group mb-3">
                                                                         <input type="text" class="form-control"
-                                                                            placeholder="Example: Gramed" autocomplete="off"
+                                                                            placeholder="Example: Gramedia" autocomplete="off"
                                                                             name="penerbit" value="{{ $buku->penerbit }}">
                                                                     </div>
                                                                 </div>
                                                             </div>
+                                                            <div class="row">
+                                                                <div class="col">
+                                                                    <label>Stock</label>
+                                                                    <div class="input-group mb-3">
+                                                                        <input type="number"  max="100000" class="form-control"
+                                                                        autocomplete="off" name="stock" value="{{ $buku->stock }}">
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                            
                                                             <div class="row">
                                                                 <div class="col">
                                                                     <label>Kategori</label>
@@ -155,13 +176,13 @@
                                                                         <select class="form-control" name="kategori"
                                                                             type="text">
                                                                             <option value="pendidikan"
-                                                                                {{ $buku->kategori == 'pendidikan' ? 'selected' : '' }}>
+                                                                                {{ $buku->kategori == 'Pendidikan' ? 'selected' : '' }}>
                                                                                 Pendidikan</option>
                                                                             <option value="fiksi"
                                                                                 {{ $buku->kategori == 'fiksi' ? 'selected' : '' }}>
                                                                                 Fiksi</option>
                                                                             <option value="non-fiksi"
-                                                                                {{ $buku->kategori == 'non-fiksi' ? 'selected' : '' }}>
+                                                                                {{ $buku->kategori == 'fon-fiksi' ? 'selected' : '' }}>
                                                                                 Non-Fiksi</option>
                                                                         </select>
                                                                     </div>
@@ -181,6 +202,7 @@
                                             <td>{{ $buku->pengarang }}</td>
                                             <td>{{ $buku->penerbit }}</td>
                                             <td>{{ $buku->kategori }}</td>
+                                            <td>{{ $buku->stock }}</td>
                                             <td>{{ $buku->created_at->format('d M Y') }}</td>
                                             <td class="d-flex gap-1 justify-content-center">
                                                 <div>

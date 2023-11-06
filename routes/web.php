@@ -3,6 +3,8 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\BukuController;
 use App\Http\Controllers\LoginController;
+use App\Http\Controllers\RegisterController;
+use App\Http\Controllers\Hash;
 
 
 
@@ -25,18 +27,16 @@ Route::get('/anggota', function () {
     return view('pages.anggota');
 });
 
-Route::get('/peminjaman', function () {
+Route::get('/peminjaman', function (){
     return view('pages.peminjaman');
 });
 
-Route::get('/', function () {
-    return view('pages.login');
-});
+Route::get('/', [LoginController::class, 'index']);
+Route::post('/', [LoginController::class, 'authenticate'])->name('login');
 
-Route::get('/register', function () {
-    return view('pages.register');
-});
+Route::get('/register', [RegisterController::class, 'index']);
+Route::post('/register', [RegisterController::class, 'store'])->name('register');
+
 
 Route::resource('buku', BukuController::class);
-Route::resource('login', LoginController::class);
 
