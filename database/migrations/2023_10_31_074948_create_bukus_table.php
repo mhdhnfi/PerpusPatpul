@@ -12,11 +12,13 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('bukus', function (Blueprint $table) {
-            $table->id();
+            $table->id(); // This creates an auto-increment primary key column
+            $table->text('gambar')->nullable()->default('https://cdn3d.iconscout.com/3d/premium/thumb/book-5596349-4665465.png');
             $table->string('judul');
             $table->string('pengarang');
             $table->string('penerbit');
             $table->string('kategori');
+            $table->bigInteger('stock');
             $table->timestamps();
         });
     }

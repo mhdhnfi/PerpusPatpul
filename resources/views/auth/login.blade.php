@@ -77,7 +77,7 @@
                                                 <div class="input-group-text"><i
                                                         class="fas fa-user @error('email') is-invalid @enderror"></i></div>
                                                 <input type="email" id="email" class="form-control @error('email') is-invalid @enderror" name="email"
-                                                    placeholder="napi@example.com" autofocus value="{{ old('email') }}"
+                                                    placeholder="napi@example.com" autofocus
                                                     required>
                                                 @error('email')
                                                     <span class="invalid-feedback" role="alert">

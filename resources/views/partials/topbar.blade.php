@@ -7,9 +7,7 @@
     </button>
 
     
-
-
-    <!-- Topbar Navbar -->
+    @auth
     <ul class="navbar-nav ml-auto">
         <div class="topbar-divider d-none d-sm-block"></div>
 
@@ -17,7 +15,10 @@
         <li class="nav-item dropdown no-arrow">
             <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button" data-toggle="dropdown"
                 aria-haspopup="true" aria-expanded="false">
-                <span class="mr-2 d-none d-lg-inline text-gray-600 small">Muhamad Hanafi</span>
+                <span class="mr-2 d-none d-lg-inline text-gray-600">
+                    @if (Auth::check())
+                    <span>Selamat datang, {{ Auth::user()->name }}</span>
+                    @endif</span>
                 <img class="img-profile rounded-circle" src="img/undraw_profile.svg">
             </a>
             <!-- Dropdown - User Information -->
@@ -35,6 +36,13 @@
         </li>
 
     </ul>
+    @else
+    
+    @endauth
+
+
+    <!-- Topbar Navbar -->
+    
 
 </nav>
 <!-- End of Topbar -->

@@ -35,6 +35,7 @@ class BukuController extends Controller
     public function store(StorebukuRequest $request)
     {
         $validated = $request->validate([
+            'image'     => 'exclude',
             'judul'     => 'required',
             'pengarang' => 'required',
             'penerbit'  => 'required',
@@ -76,7 +77,7 @@ class BukuController extends Controller
      */
     public function destroy(Buku $buku)
     {
-        $buku->id;
+        $buku->delete();
         return redirect()->back();
     }
 }

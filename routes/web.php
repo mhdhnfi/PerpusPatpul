@@ -4,6 +4,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\BukuController;
 use App\Http\Controllers\LoginController;
 use App\Http\Controllers\RegisterController;
+use App\Http\Controllers\AnggotaController;
 use App\Http\Controllers\Hash;
 
 
@@ -23,9 +24,6 @@ Route::get('/dashboard', function () {
     return view('pages.dashboard');
 });
 
-Route::get('/anggota', function () {
-    return view('pages.anggota');
-});
 
 Route::get('/peminjaman', function (){
     return view('pages.peminjaman');
@@ -39,4 +37,5 @@ Route::post('/register', [RegisterController::class, 'store'])->name('register')
 
 
 Route::resource('buku', BukuController::class);
+Route::resource('anggota', AnggotaController::class);
 

@@ -43,12 +43,21 @@
             <span>Buku</span></a>
     </li>
 
-    <!-- Nav Item - Pages Collapse Menu -->
+    <!-- Nav Item - Pinjam Collapse Menu -->
     <li class="nav-item {{ (Request::is('peminjaman')) ? 'active' : '' }}">
         <a class="nav-link collapsed" href="{{ url('/peminjaman') }}" data-toggle="" data-target="#collapseTwo"
             aria-expanded="true" aria-controls="collapseTwo">
-            <i class="fas fa-fw fa-cog"></i>
-            <span>Peminjaman</span>
+            <i class="fas fa-hands-helping"></i>
+            <span>Pinjam Buku</span>
+        </a>
+    </li>
+
+    <!-- Nav Item - History Collapse Menu -->
+    <li class="nav-item {{ (Request::is('peminjaman')) ? 'active' : '' }}">
+        <a class="nav-link collapsed" href="{{ url('/peminjaman') }}" data-toggle="" data-target="#collapseTwo"
+            aria-expanded="true" aria-controls="collapseTwo">
+            <i class="fas fa-history"></i>
+            <span>History</span>
         </a>
     </li>
 

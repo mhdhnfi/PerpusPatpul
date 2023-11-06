@@ -29,9 +29,9 @@
                     <!-- Modal -->
                     <form action="{{ route('buku.store') }}" method="POST">
                         @csrf
-                        <div class="modal fade text-center" id="buku" tabindex="-1" role="dialog" aria-labelledby="bukuTitle"
+                        <div class="modal fade text-center bd-example-modal-lg" id="buku" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel"
                             aria-hidden="true">
-                            <div class="modal-dialog modal-dialog-centered" role="document">
+                            <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
                                 <div class="modal-content">
                                     <div class="modal-header">
                                         <h5 class="modal-title" id="bukuTitle">Tambahkan Buku</h5>
@@ -40,41 +40,44 @@
                                         </button>
                                     </div>
                                     <div class="modal-body" >
+                                        
+                                        <div class="row">
+                                            <div class="col">
+                                                <label>Gambar</label>
+                                                <div class="input-group mb-3">
+                                                    <input type="text" class="form-control" placeholder="Input link"
+                                                        autocomplete="off" name="gambar">
+                                                </div>
+                                            </div>
+                                        </div>
+
                                         <div class="row g-3">
                                             <div class="col">
                                                 <label>Judul</label>
                                                 <div class="input-group mb-3">
                                                     <input type="text" class="form-control" placeholder="Example: NapiXhutao"
-                                                        autocomplete="off" name="judul" value="">
+                                                        autocomplete="off" name="judul">
                                                 </div>
                                             </div>
                                             <div class="col">
                                                 <label>Pengarang</label>
                                                 <div class="input-group mb-3">
                                                     <input type="text" class="form-control" placeholder="Example: Hu Tao"
-                                                        autocomplete="off" name="pengarang" value="">
+                                                        autocomplete="off" name="pengarang">
                                                 </div>
                                             </div>
                                         </div>
-             
+
                                         <div class="row">
                                             <div class="col">
                                                 <label>Penerbit</label>
                                                 <div class="input-group mb-3">
                                                     <input type="text" class="form-control" placeholder="Example: Gramedia"
-                                                        autocomplete="off" name="penerbit" value="">
+                                                        autocomplete="off" name="penerbit">
                                                 </div>
                                             </div>
                                         </div>
-                                        <div class="row">
-                                            <div class="col">
-                                                <label>Stock</label>
-                                                <div class="input-group mb-3">
-                                                        <input type="number"min="1" max="100000"class="form-control"
-                                                        autocomplete="off" name="stock" value="1">
-                                                </div>
-                                            </div>
-                                        </div>
+                                        
                                         <div class="row">
                                             <div class="col">
                                                 <label>Kategori</label>
@@ -86,7 +89,15 @@
                                             </div>
                                         </div>
                                         
-
+                                        <div class="row">
+                                            <div class="col">
+                                                <label class="mt-1">Stock</label>
+                                                <div class="input-group mb-3">
+                                                        <input type="number"min="1" max="1000"class="form-control"
+                                                        autocomplete="off" name="stock" value="1">
+                                                </div>
+                                            </div>
+                                        </div>
                                     </div>
                                     <div class="modal-footer">
                                         <button type="submit" class="btn btn-primary">Submit</button>
@@ -104,6 +115,7 @@
                                 <thead>
                                     <tr>
                                         <th class="text-center">No</th>
+                                        <th class="text-center">Gambar</th>
                                         <th class="text-center">Judul</th>
                                         <th class="text-center">Pengarang</th>
                                         <th class="text-center">Penerbit</th>
@@ -130,6 +142,7 @@
                                                         <form action="{{ route('buku.update', $buku) }}" method="POST">
                                                             @csrf
                                                             @method('PATCH')
+                                                            
                                                             <div class="row g-3">
                                                                 <div class="col">
                                                                     <label>Judul</label>
@@ -140,6 +153,7 @@
                                                                             value="{{ $buku->judul }}">
                                                                     </div>
                                                                 </div>
+
                                                                 <div class="col">
                                                                     <label>Pengarang</label>
                                                                     <div class="input-group mb-3">
@@ -149,6 +163,17 @@
                                                                     </div>
                                                                 </div>
                                                             </div>
+                                                            
+                                                            <div class="row">
+                                                                <div class="col">
+                                                                    <label>Stock</label>
+                                                                    <div class="input-group mb-3">
+                                                                        <input type="number"  max="100000" class="form-control"
+                                                                        autocomplete="off" name="stock" value="{{ $buku->stock }}">
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+
                                                             <div class="row">
                                                                 <div class="col">
                                                                     <label>Penerbit</label>
@@ -156,15 +181,6 @@
                                                                         <input type="text" class="form-control"
                                                                             placeholder="Example: Gramedia" autocomplete="off"
                                                                             name="penerbit" value="{{ $buku->penerbit }}">
-                                                                    </div>
-                                                                </div>
-                                                            </div>
-                                                            <div class="row">
-                                                                <div class="col">
-                                                                    <label>Stock</label>
-                                                                    <div class="input-group mb-3">
-                                                                        <input type="number"  max="100000" class="form-control"
-                                                                        autocomplete="off" name="stock" value="{{ $buku->stock }}">
                                                                     </div>
                                                                 </div>
                                                             </div>
@@ -198,6 +214,7 @@
                                         </div>
                                         <tr>
                                             <td>{{ $loop->iteration }}</td>
+                                            <td><img src="{{ $buku->gambar }}" alt="Image" width="100" height="100"></td>
                                             <td>{{ $buku->judul }}</td>
                                             <td>{{ $buku->pengarang }}</td>
                                             <td>{{ $buku->penerbit }}</td>
