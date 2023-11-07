@@ -20,22 +20,31 @@ use App\Http\Controllers\Hash;
 |
 */
 
-Route::get('/dashboard', function () {
-    return view('pages.dashboard');
+Route::middleware(['auth'])->group(function () {
+    
+    Route::get('/dashboard', function () {
+        return view('pages.dashboard');
+    });
+    
+    
+    Route::get('/peminjaman', function (){
+        return view('pages.peminjaman');
+    });
+    Route::resource('buku', BukuController::class);
+    Route::resource('anggota', AnggotaController::class);
+    Route::get('logout', [LoginController::class, 'logout'])->name('logout');
+});
+
+Route::middleware(['guest'])->group(function () {
+    
+    Route::get('/', [LoginController::class, 'index']);
+    Route::post('/', [LoginController::class, 'authenticate'])->name('login');
+    
+    Route::get('/register', [RegisterController::class, 'index']);
+    Route::post('/register', [RegisterController::class, 'store'])->name('register');
 });
 
 
-Route::get('/peminjaman', function (){
-    return view('pages.peminjaman');
-});
-
-Route::get('/', [LoginController::class, 'index']);
-Route::post('/', [LoginController::class, 'authenticate'])->name('login');
-
-Route::get('/register', [RegisterController::class, 'index']);
-Route::post('/register', [RegisterController::class, 'store'])->name('register');
 
 
-Route::resource('buku', BukuController::class);
-Route::resource('anggota', AnggotaController::class);
 

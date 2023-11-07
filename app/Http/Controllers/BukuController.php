@@ -52,7 +52,7 @@ class BukuController extends Controller
      */
     public function show(Buku $buku)
     {
-        //
+        
     }
 
     /**

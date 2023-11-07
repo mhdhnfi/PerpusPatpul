@@ -20,9 +20,10 @@ class UserSeeder extends Seeder
                 'id' => 1,
                 'name' => 'Napi',
                 'email' => 'napi@gmail.com',
-                'password' => Hash::make('napi123'),,
+                'password' => Hash::make('napi123'),
+                'admin' => 1,
                 'created_at' => now(),
-                'updated_at' => now()
+                'updated_at' => now(),
             ],
 
             ]);

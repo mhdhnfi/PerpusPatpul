@@ -6,11 +6,17 @@
         text-decoration: none;
     }
 
-    .login-page {
-        width: 100%;
+    body {
+        background-image: url('{{ asset('img/perpus.png') }}');
+        background-size: cover;
+        background-position: center;
+        background-repeat: no-repeat;
+        background-size: 100% 100%
         height: 100vh;
+        margin: 0;
         display: flex;
         align-items: center;
+        justify-content: center;
     }
 
     .form-right i {
@@ -19,11 +25,24 @@
 
     img {
         pointer-events: none;
-        width: 100%;
-        margin: 20px 0 0 0 ;
     }
-</style>
 
+    .test {
+        position: absolute;
+        top: 0;
+        left: 0;
+        z-index: -1;
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+    }
+
+    .login-page {
+        background-color: rgba(255, 255, 255, 0.4); /* Menambahkan lapisan transparan di atas gambar latar belakang */
+    }
+    
+    
+</style>
 
     
 
@@ -55,10 +74,11 @@
 <body id="page-top">
 
     <div class="login-page" style="font-weight: bold;">
+        <img src="{{ asset('img/perpus.png') }}" class="test">
         <div class="container">
             <div class="row">
                 <div class="col-lg-10 offset-lg-1">
-                    <h3 class="text-center mb-5" style="color: #000000; font-weight: bold; font-size: 40px;">{{ $title }}</h3>
+                    <h3 class="text-center mb-5" style="color: black; font-weight: bold; font-size: 40px;">{{ $title }}</h3>
                     <div class="bg-white shadow rounded">
                         <div class="row">
                             <div class="col-md-7 pe-0">
@@ -111,7 +131,7 @@
                                 <div
                                     class="form-right h-100 bg-light text-white text-center p-3 shadow bg-body-tertiary rounded">
                                     <img src="{{ asset('img/smkn40.png') }}" alt="logoregislogin"
-                                        style="pointer-events: none; ">
+                                        style="pointer-events: none;" class="logo">
                                 </div>
                             </div>
                         </div>

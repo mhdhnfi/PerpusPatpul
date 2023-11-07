@@ -26,11 +26,24 @@ class LoginController extends Controller
             $request->session()->regenerate();
             return redirect()->intended('/dashboard');
         }
+        else {
+            return redirect()->route('login')->with('error', 'Email atau password salah');
+        }
+        
+        return redirect('/dashboard')
+        ->withInput($request->only('email',))
+        ->withErrors([
+            'password' => 'Email atau password salah. Silakan coba lagi.',
+        ]);
+        
+    }
+    public function logout(Request $request)
+    {
+        Auth::logout();
 
-        return back()->withErrors([
-            'email' => 'The provided credentials do not match our records.',
-            ])->onlyInput('email');
+        $request->session()->invalidate();
+        $request->session()->regenerateToken();
 
-        dd('berhasil login');
+        return redirect('/login');
     }
 }

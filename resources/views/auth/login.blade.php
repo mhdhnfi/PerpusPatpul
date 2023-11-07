@@ -1,17 +1,24 @@
-
 @section('title', 'Login')
 <link rel="icon" type="image/x-icon" href="{{ asset('img/smkn40.png') }}">
+
+
 
 <style>
     a {
         text-decoration: none;
     }
 
-    .login-page {
-        width: 100%;
+    body {
+        background-image: url('{{ asset('img/perpus.png') }}');
+        background-size: cover;
+        background-position: center;
+        background-repeat: no-repeat;
+        background-size: 100% 100%
         height: 100vh;
+        margin: 0;
         display: flex;
         align-items: center;
+        justify-content: center;
     }
 
     .form-right i {
@@ -21,7 +28,22 @@
     img {
         pointer-events: none;
     }
+
+    .test {
+        position: absolute;
+        top: 0;
+        left: 0;
+        z-index: -1;
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+    }
+
+    .login-page {
+        background-color: rgba(255, 255, 255, 0.4); /* Menambahkan lapisan transparan di atas gambar latar belakang */
+    }
 </style>
+
 
 <!DOCTYPE html>
 <html lang="en">
@@ -37,7 +59,6 @@
     <title>Perpus40 | @yield('title')</title>
 
     <!-- Custom fonts for this template-->
-    <link rel="icon" type="image/x-icon" href="{{ asset('img/smkn40.png') }}">
     <link href="vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
     <link
         href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i"
@@ -48,7 +69,8 @@
 
 </head>
 
-<body id="page-top">
+
+<body id="page-top" style="background: url('');">
 
     @if (session()->has('success'))
 
@@ -58,13 +80,12 @@
     </div>
         
     @endif
-
-
     <div class="login-page" style="font-weight: bold;">
+        <img src="{{ asset('img/perpus.png') }}" class="test">
         <div class="container">
             <div class="row">
                 <div class="col-lg-10 offset-lg-1">
-                    <h3 class="text-center mb-5" style="color: #000000; font-weight: bold; font-size: 40px;">Login</h3>
+                    <h3 class="text-center mb-5 text-bolder" style="color: black; font-weight: bold; font-size: 40px;">LOGIN</h3>
                     <div class="bg-white shadow rounded">
                         <div class="row">
                             <div class="col-md-7 pe-0">
@@ -74,31 +95,32 @@
                                         <div class="col-12 mt-3">
                                             <label for="email">Email</label>
                                             <div class="input-group">
-                                                <div class="input-group-text"><i
-                                                        class="fas fa-user @error('email') is-invalid @enderror"></i></div>
+                                                <div class="input-group-text"><i class="fas fa-user @error('email') is-invalid @enderror"></i></div>
                                                 <input type="email" id="email" class="form-control @error('email') is-invalid @enderror" name="email"
-                                                    placeholder="napi@example.com" autofocus
-                                                    required>
-                                                @error('email')
-                                                    <span class="invalid-feedback" role="alert">
-                                                        <strong>Email Salah/Tidak ada</strong>
-                                                    </span>
-                                                @enderror
+                                                    placeholder="napi@example.com" autofocus required>
                                             </div>
                                         </div>
+                                        
+                                        
+
                                         <div class="col-12 mt-3">
                                             <label for="password">Password</label>
                                             <div class="input-group">
                                                 <div class="input-group-text"><i class="fas fa-lock"></i></div>
                                                 <input type="password"
-                                                    class="form-control @error('password') is-invalid @enderror"
+                                                    class="form-control"
                                                     name="password" placeholder="hutao123" autofocus required>
-                                                @error('password')
-                                                    <span class="invalid-feedback" role="alert">
-                                                        <strong></strong>
-                                                    </span>
-                                                @enderror
+                                                    @if (session('error'))
+                                                    <div class="col-12 mt-3">
+                                                    <div class="alert alert-danger">
+                                                    {{ session('error') }}
+                                                    </div>
+                                                    </div>
+                                                    @endif
                                             </div>
+
+                                            
+
                                             <div class="mt-3">
                                                 Belum Daftar? Mana Maen Daftar lah di -><a class="fs-2"
                                                     href="{{ route('register') }}"> Sini</a>
