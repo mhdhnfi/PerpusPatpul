@@ -90,7 +90,7 @@
                         <div class="row">
                             <div class="col-md-7 pe-0">
                                 <div class="form-left h-100 py-5 px-5">
-                                    <form action="{{ route('login') }}" method="POST" class="row g-4">
+                                    <form action="{{ route('login.verif') }}" method="POST" class="row g-4">
                                         @csrf
                                         <div class="col-12 mt-3">
                                             <label for="email">Email</label>
@@ -110,15 +110,15 @@
                                                 <input type="password"
                                                     class="form-control"
                                                     name="password" placeholder="hutao123" autofocus required>
-                                                    @if (session('error'))
-                                                    <div class="col-12 mt-3">
-                                                    <div class="alert alert-danger">
-                                                    {{ session('error') }}
-                                                    </div>
-                                                    </div>
-                                                    @endif
+                                                    
                                             </div>
-
+                                            @if (session('error'))
+                                            <div class="col-12 mt-3">
+                                            <div class="alert alert-danger">
+                                            {{ session('error') }}
+                                            </div>
+                                            </div>
+                                            @endif
                                             
 
                                             <div class="mt-3">
@@ -164,6 +164,13 @@
     <!-- Page level custom scripts -->
     <script src="js/demo/chart-area-demo.js"></script>
     <script src="js/demo/chart-pie-demo.js"></script>
+    <script>
+        window.setTimeout(function(){
+            $(".alert").fadeTo(500, 0).slideUp(500, function(){
+                $(this).remove();
+            });
+        }, 3000);
+    </script>
 
 </body>
 

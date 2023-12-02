@@ -13,12 +13,12 @@ return new class extends Migration
     {
         Schema::create('bukus', function (Blueprint $table) {
             $table->id(); // This creates an auto-increment primary key column
-            $table->text('gambar')->nullable()->default('https://cdn3d.iconscout.com/3d/premium/thumb/book-5596349-4665465.png');
+            $table->text('gambar')->nullable();
             $table->string('judul');
             $table->string('pengarang');
             $table->string('penerbit');
             $table->string('kategori');
-            $table->bigInteger('stock');
+            $table->integer('stock')->default(5);
             $table->timestamps();
         });
     }

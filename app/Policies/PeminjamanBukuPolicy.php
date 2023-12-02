@@ -2,11 +2,11 @@
 
 namespace App\Policies;
 
+use App\Models\PeminjamanBuku;
 use App\Models\User;
-use App\Models\peminjaman;
 use Illuminate\Auth\Access\Response;
 
-class PeminjamanPolicy
+class PeminjamanBukuPolicy
 {
     /**
      * Determine whether the user can view any models.
@@ -19,7 +19,7 @@ class PeminjamanPolicy
     /**
      * Determine whether the user can view the model.
      */
-    public function view(User $user, peminjaman $peminjaman): bool
+    public function view(User $user, PeminjamanBuku $peminjamanBuku): bool
     {
         //
     }
@@ -35,7 +35,7 @@ class PeminjamanPolicy
     /**
      * Determine whether the user can update the model.
      */
-    public function update(User $user, peminjaman $peminjaman): bool
+    public function update(User $user, PeminjamanBuku $peminjamanBuku): bool
     {
         //
     }
@@ -43,7 +43,7 @@ class PeminjamanPolicy
     /**
      * Determine whether the user can delete the model.
      */
-    public function delete(User $user, peminjaman $peminjaman): bool
+    public function delete(User $user, PeminjamanBuku $peminjamanBuku): bool
     {
         //
     }
@@ -51,7 +51,7 @@ class PeminjamanPolicy
     /**
      * Determine whether the user can restore the model.
      */
-    public function restore(User $user, peminjaman $peminjaman): bool
+    public function restore(User $user, PeminjamanBuku $peminjamanBuku): bool
     {
         //
     }
@@ -59,7 +59,7 @@ class PeminjamanPolicy
     /**
      * Determine whether the user can permanently delete the model.
      */
-    public function forceDelete(User $user, peminjaman $peminjaman): bool
+    public function forceDelete(User $user, PeminjamanBuku $peminjamanBuku): bool
     {
         //
     }

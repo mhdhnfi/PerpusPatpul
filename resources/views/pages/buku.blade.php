@@ -20,14 +20,16 @@
                 <!-- DataTales Example -->
                 <div class="card shadow mb-4">
                     <div class="card-header py-3">
+                        @can('admin')
                         <a class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm" type="button" data-toggle="modal"
-                            data-target="#buku">
-                            <i class="fas fa-plus fa-sm text-white-50"></i> Tambah
-                        </a>
+                        data-target="#buku">
+                        <i class="fas fa-plus fa-sm text-white-50"></i> Tambah
+                     </a>
+                        @endcan
                     </div>
 
                     <!-- Modal -->
-                    <form action="{{ route('buku.store') }}" method="POST">
+                    <form action="{{ route('buku.store')}}" method="POST" enctype="multipart/form-data">
                         @csrf
                         <div class="modal fade text-center bd-example-modal-lg" id="buku" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel"
                             aria-hidden="true">
@@ -45,8 +47,7 @@
                                             <div class="col">
                                                 <label>Gambar</label>
                                                 <div class="input-group mb-3">
-                                                    <input type="text" class="form-control" placeholder="Input link"
-                                                        autocomplete="off" name="gambar">
+                                                    <input type="file" class="form-control" placeholder="Input link"autocomplete="off" name="gambar">
                                                 </div>
                                             </div>
                                         </div>
@@ -115,8 +116,8 @@
                                 <thead>
                                     <tr>
                                         <th class="text-center">No</th>
-                                        <th class="text-center">Gambar</th>
                                         <th class="text-center">Judul</th>
+                                        <th class="text-center">Gambar</th>
                                         <th class="text-center">Pengarang</th>
                                         <th class="text-center">Penerbit</th>
                                         <th class="text-center">Kategori</th>
@@ -139,9 +140,19 @@
                                                         </button>
                                                     </div>
                                                     <div class="modal-body">
-                                                        <form action="{{ route('buku.update', $buku) }}" method="POST">
+                                                        <form action="{{ route('buku.update', $buku) }}" method="POST" enctype="multipart/form-data">
                                                             @csrf
                                                             @method('PATCH')
+
+                                                            <div class="row">
+                                                                <div class="col">
+                                                                    <label>Gambar</label>
+                                                                    <div class="input-group mb-3">
+                                                                        <input type="file" class="form-control" placeholder="Input link"
+                                                                            autocomplete="off" name="gambar">
+                                                                    </div>
+                                                                </div>
+                                                            </div>
                                                             
                                                             <div class="row g-3">
                                                                 <div class="col">
@@ -214,14 +225,24 @@
                                         </div>
                                         <tr>
                                             <td>{{ $loop->iteration }}</td>
-                                            <td><img src="{{ $buku->gambar }}" alt="Image" width="100" height="100"></td>
                                             <td>{{ $buku->judul }}</td>
+                                            <td><img src="storage/{{ $buku->gambar }}" alt="Image" width="100"></td>
                                             <td>{{ $buku->pengarang }}</td>
                                             <td>{{ $buku->penerbit }}</td>
                                             <td>{{ $buku->kategori }}</td>
                                             <td>{{ $buku->stock }}</td>
                                             <td>{{ $buku->created_at->format('d M Y') }}</td>
-                                            <td class="d-flex gap-1 justify-content-center">
+                                            <td class="d-flex gap-2 justify-content-center">
+                                                <a href="{{ route('buku.show', $buku->id) }}" class="btn btn-success btn-sm mx-2">
+                                                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-file-info" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+                                                        <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
+                                                        <path d="M14 3v4a1 1 0 0 0 1 1h4"></path>
+                                                        <path d="M17 21h-10a2 2 0 0 1 -2 -2v-14a2 2 0 0 1 2 -2h7l5 5v11a2 2 0 0 1 -2 2z"></path>
+                                                        <path d="M11 14h1v4h1"></path>
+                                                        <path d="M12 11h.01"></path>
+                                                    </svg>
+                                                </a>    
+                                                @can('admin')                                            
                                                 <div>
                                                     <button class="btn btn-warning btn-sm mx-2" data-toggle="modal"
                                                         data-target="#editBuku{{ $buku->id }}">
@@ -263,6 +284,7 @@
                                                         </button>
                                                     </form>
                                                 </div>
+                                                @endcan
                                             </td>
                                         </tr>
                                     @endforeach

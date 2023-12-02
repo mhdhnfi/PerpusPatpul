@@ -2,9 +2,10 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Buku;
 use App\Http\Requests\StorebukuRequest;
 use App\Http\Requests\UpdatebukuRequest;
+use App\Models\Buku;
+use Illuminate\Support\Facades\Storage;
 
 class BukuController extends Controller
 {
@@ -16,8 +17,6 @@ class BukuController extends Controller
         return view('pages.buku', [
             'data' => Buku::all()
         ]);
-
-        $title  = 'Perpus40 | Buku';
         
     }
 
@@ -35,13 +34,18 @@ class BukuController extends Controller
     public function store(StorebukuRequest $request)
     {
         $validated = $request->validate([
-            'image'     => 'exclude',
+            'gambar'    => 'required',
             'judul'     => 'required',
             'pengarang' => 'required',
             'penerbit'  => 'required',
             'kategori'  => 'required',
             'stock'     => 'required',
         ]);
+
+        $gambar = $request->file('gambar');
+
+        $filename = $gambar->store('cover-buku');
+        $validated['gambar'] = $filename;
 
         Buku::create($validated);
         return redirect()->back();
@@ -50,11 +54,13 @@ class BukuController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(Buku $buku)
+    public function show($id)
     {
+        $buku = Buku::find($id);
+        return view('pages.detail', compact('buku'));
         
     }
-
+        
     /**
      * Show the form for editing the specified resource.
      */
@@ -68,7 +74,22 @@ class BukuController extends Controller
      */
     public function update(UpdatebukuRequest $request, Buku $buku)
     {
-        $buku->update($request->all());
+        $validated = $request->validate([
+            'judul'     => 'required',
+            'pengarang' => 'required',
+            'penerbit'  => 'required',
+            'kategori'  => 'required',
+            'stock'     => 'required',
+        ]);
+
+        if ($request->file('gambar')) {
+            $gambar = $request->file('gambar');
+            $filename = $gambar->store('cover-buku');
+            $validated['gambar'] = $filename;
+            Storage::delete($buku->gambar);
+        }
+        
+        $buku->update($validated);
         return redirect()->back();
     }
 

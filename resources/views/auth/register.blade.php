@@ -90,20 +90,21 @@
                                             <div class="input-group">
                                                 <div class="input-group-text"><i class="fas fa-user"></i></div>
                                                 <input type="text" name="name" id="name" class="form-control rounded-top @error('name') is-invalid @enderror"
-                                                    placeholder="Example: Asep Kopling" required autocomplete="off">
+                                                placeholder="Example: Asep Kopling"  autocomplete="off" pattern="[A-Z][a-z]+" min="4" required>
                                                 @error('name')
                                                     <div class="invalid-feedback">
                                                         <strong>Nama Sudah Ada</strong>
                                                     </div>
                                                 @enderror
                                             </div>
+                                            <label class="mt-2 text-danger"> Wajib Huruf Besar</label>
                                         </div>
                                         <div class="col-12 mt-3">
                                             <label for="email">Email</label>
                                             <div class="input-group">
                                                 <div class="input-group-text"><i class="fas fa-envelope"></i></div>
                                                 <input type="email" name="email" class="form-control @error('email') is-invalid @enderror" id="email"
-                                                    placeholder="napi@example.com" required autocomplete="off">
+                                                    placeholder="napi@example.com"  autocomplete="off" required >
                                                 @error('email')
                                                     <div class="invalid-feedback">
                                                         <strong>Email sudah Ada</strong>

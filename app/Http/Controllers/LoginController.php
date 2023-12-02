@@ -18,7 +18,7 @@ class LoginController extends Controller
     public function authenticate(Request $request)
     {
         $credentials = $request->validate([
-            'email' => 'required|email:dns',
+            'email' => 'required',
             'password' => 'required',
         ]);
         
@@ -29,12 +29,6 @@ class LoginController extends Controller
         else {
             return redirect()->route('login')->with('error', 'Email atau password salah');
         }
-        
-        return redirect('/dashboard')
-        ->withInput($request->only('email',))
-        ->withErrors([
-            'password' => 'Email atau password salah. Silakan coba lagi.',
-        ]);
         
     }
     public function logout(Request $request)
