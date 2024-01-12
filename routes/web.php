@@ -3,10 +3,9 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\LoginController;
 use App\Http\Controllers\RegisterController;
-use App\Http\Controllers\AnggotaController;
 use App\Http\Controllers\BukuController;
 use App\http\controllers\PeminjamanBukuController;
-use App\http\controllers\ProfileController;
+use App\Http\Controllers\AnggotaController;
 
 use App\Http\Controllers\Hash;
 
@@ -36,11 +35,13 @@ Route::middleware(['auth'])->group(function () {
     Route::resource('peminjaman', PeminjamanBukuController::class)->only(['index', 'create', 'store', 'update']);
     Route::resource('buku', BukuController::class);
     Route::resource('anggota', AnggotaController::class);
-    Route::resource('profile', ProfileController::class);
+    
     Route::get('logout', [LoginController::class, 'logout'])->name('logout');
     Route::post('/peminjaman/{peminjamanBuku}/accept', [PeminjamanBukuController::class, 'accept'])->name('peminjaman.accept');
     Route::post('/peminjaman/{peminjamanBuku}/reject', [PeminjamanBukuController::class, 'reject'])->name('peminjaman.reject');
-
+    
+    Route::get('/edit-profile', [AnggotaController::class, 'editProfile'])->name('edit.profile');
+    Route::post('/update-profile', [AnggotaController::class, 'updateProfile'])->name('update.profile');
 });
 
 Route::middleware(['guest'])->group(function () {

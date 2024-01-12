@@ -94,17 +94,16 @@
                     </div>
                 </div>
 
+                @endcan
             </div>
 
 
-                @endcan
             <div class="row">
                 <div class="card shadow mb-4 text-center">
                     <div class="card-header py-3">
-                        <h6 class="m-0 font-weight-bold text-primary" style="text-transform: capitalize;">Welcome {{ Auth::user()->name }}</h6>
+                        <h6 class="m-0 font-weight-bold text-primary" style="text-transform: capitalize;">Welcome {{ Auth::user()->name }} Di Perpus 40</h6>
                     </div>
                         <div class="card-body">
-                            <p>Selamat Datang di "Library 40"<b class="text-uppercase ">, </b></p>
                             <p class="mb-0">
                                 Buku adalah jendela dunia yang membuka pintu ke pengetahuan, petualangan, dan pertumbuhan pribadi. Ketika Anda membaca, Anda berinvestasi dalam diri sendiri, memperluas cakrawala, dan menjelajahi zaman yang berbeda. Website perpustakaan kami adalah sumber daya tak ternilai untuk pengetahuan, menghadirkan kesempatan untuk mengubah hidup Anda. Jadilah pelajar seumur hidup dengan mengakses buku-buku hebat yang kami tawarkan, karena setiap halaman adalah peluang baru untuk memulai petualangan baru, memahami perspektif baru, dan menjadi lebih bijak. Membaca adalah pintu menuju perubahan yang luar biasa, dan buku adalah sahabat setia yang siap menemani Anda dalam perjalanan hidup Anda.
                             </p>

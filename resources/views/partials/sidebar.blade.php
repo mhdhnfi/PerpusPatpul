@@ -46,16 +46,6 @@
         </a>
     </li>
     
-
-    <!-- Nav Item - History Collapse Menu -->
-    {{-- <li class="nav-item {{ (Request::is('peminjaman*')) ? 'active' : '' }}">
-        <a class="nav-link collapsed" href="{{ url('/peminjaman') }}" data-toggle="" data-target="#collapseTwo"
-            aria-expanded="true" aria-controls="collapseTwo">
-            <i class="fas fa-history"></i>
-            <span>History</span>
-        </a>
-    </li> --}}
-
     <!-- Divider -->
     <hr class="sidebar-divider d-none d-md-block">
 

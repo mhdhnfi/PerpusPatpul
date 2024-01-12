@@ -2,7 +2,8 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\User;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Validator;
 use Illuminate\Http\Request;
 
 class AnggotaController extends Controller
@@ -10,57 +11,40 @@ class AnggotaController extends Controller
     /**
      * Display a listing of the resource.
      */
-    public function index()
-    {
-        $users = User::all(); // Retrieve all users
-        return view('pages.anggota', ['data' => $users]);
+    public function index(){
+        return view('pages.profile');
     }
 
-    /**
-     * Show the form for creating a new resource.
-     */
-    public function create()
+    public function editProfile()
     {
-        //
+        $user = Auth::user();
+        return view('editprofile', compact('user'));
     }
 
-    /**
-     * Store a newly created resource in storage.
-     */
-    public function store(Request $request)
+    public function updateProfile(Request $request)
     {
-        //
-    }
+        $user = Auth::user();
 
-    /**
-     * Display the specified resource.
-     */
-    public function show(Anggota $anggota)
-    {
-        //
-    }
+        $validator = Validator::make($request->all(), [
+            'name' => 'required|string|max:255',
+            'email' => 'required|string|email|max:255|unique:users,email,' . $user->id,
+        ]);
 
-    /**
-     * Show the form for editing the specified resource.
-     */
-    public function edit($id)
-    {
-        //
-    }
+        if ($validator->fails()) {
+            return redirect()->back()->withErrors($validator)->withInput();
+        }
 
-    /**
-     * Update the specified resource in storage.
-     */
-    public function update(Request $request, Anggota $anggota)
-    {
-        //
-    }
+        $user->name = $request->input('name');
+        $user->email = $request->input('email');
 
-    /**
-     * Remove the specified resource from storage.
-     */
-    public function destroy(Anggota $anggota)
-    {
-        //
+        if ($request->hasFile('avatar')) {
+            $avatarPath = $request->file('avatar')->store('avatars', 'public');
+            $user->avatar = $avatarPath;
+        }
+
+        $user->save();
+
+        return redirect()->back();
     }
+    
 }

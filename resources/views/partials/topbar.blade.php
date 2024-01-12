@@ -6,7 +6,6 @@
         <i class="fa fa-bars"></i>
     </button>
 
-    
     @auth
     <ul class="navbar-nav ml-auto">
         <div class="topbar-divider d-none d-sm-block"></div>
@@ -18,14 +17,19 @@
                 <span class="mr-2 d-none d-lg-inline text-gray-600">
                     @if (Auth::check())
                     <span style="text-transform: capitalize;">{{ Auth::user()->name }}</span>
-                    @endif</span>
-                <img class="img-profile rounded-circle" src="img/undraw_profile.svg">
+                    @endif
+                </span>
+                @if (Auth::user()->avatar)
+                    <img class="img-profile rounded-circle" src="{{ asset('storage/' . Auth::user()->avatar) }}">
+                @else
+                    <img class="img-profile rounded-circle" src="{{ asset('img/undraw_profile.svg') }}">
+                @endif
             </a>
             <!-- Dropdown - User Information -->
             <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in" aria-labelledby="userDropdown">
-                <a class="dropdown-item" href="{{ route('profile.index') }}">
+                <a class="dropdown-item" href="{{ route('anggota.index') }}">
                     <i class="fas fa-user fa-sm fa-fw mr-2 text-gray-400"></i>
-                    Profile
+                    Edit Profile
                 </a>
                 <div class="dropdown-divider"></div>
                 <a class="dropdown-item" href="{{ route('logout') }}" data-toggle="modal" data-target="#logoutModal">
@@ -34,15 +38,9 @@
                 </a>
             </div>
         </li>
-
     </ul>
-    @else
-    
     @endauth
 
-
     <!-- Topbar Navbar -->
-    
-
 </nav>
 <!-- End of Topbar -->
